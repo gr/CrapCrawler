@@ -1,0 +1,1 @@
+{"headers": ["id", "name", "url", "encoding", "delay", "eop", "preview_price"], "data": [[1, "avito", "https://www.avito.ru/moskva?p=<pagination>&bt=1&q=<query>", "utf-8", 5, "//div[@class=\"pagination__nav clearfix\"]/a[@class=\"pagination__page\"][2]", true]]}

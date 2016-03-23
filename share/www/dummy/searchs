@@ -1,0 +1,1 @@
+{"headers": ["id", "name", "query", "min_price", "max_price", "periodicity", "enabled", "notice_by"], "data": [[1, "yaesu", "yaesu", 5000, 15000, 5, true, "email"]]}

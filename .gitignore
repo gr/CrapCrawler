@@ -1,0 +1,7 @@
+*.pyc
+*.log
+*.sqlite3
+*.swp
+*.pid
+tags
+venv
