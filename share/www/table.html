@@ -1,0 +1,193 @@
+    <script src="http://koalyptus.github.io/TableFilter/tablefilter/tablefilter.js"></script>
+
+<table id="demo">
+    <thead>
+        <tr>
+            <th>Country</th>
+            <th>ISO</th>
+            <th>{this.props.url}</th>
+            <th>POP</th>
+            <th>XRAT</th>
+            <th>PPP</th>
+            <th>cgdp</th>
+            <th>cc</th>
+            <th>ci</th>
+        </tr>
+    </thead>
+    <tbody>
+        {/*<tr>
+            <td>Benin</td>
+            <td>BEN</td>
+            <td>{this.props.url}</td>
+            <td>5950.33</td>
+            <td>589.9517822</td>
+            <td>190.95</td>
+            <td>1178.46</td>
+            <td>90.98</td>
+            <td>7.55</td>
+        </tr>
+        <tr>
+            <td>Zimbabwe</td>
+            <td>ZWE</td>
+            <td>{this.props.url}</td>
+            <td>12627.00</td>
+            <td>44.41791916</td>
+            <td>9.48</td>
+            <td>2607.03</td>
+            <td>69.23</td>
+            <td>8.62</td>
+        </tr>
+
+        <tr>
+            <td>Slovenia</td>
+            <td>SVN</td>
+            <td>1995</td>
+            <td>1990.00</td>
+            <td>118.5185013</td>
+            <td>89.03</td>
+            <td>12574.96</td>
+            <td>54.46</td>
+            <td>23.11</td>
+        </tr>
+        <tr>
+            <td>Slovenia</td>
+            <td>SVN</td>
+            <td>1996</td>
+            <td>1991.00</td>
+            <td>135.3643036</td>
+            <td>97.27</td>
+            <td>13151.51</td>
+            <td>54.32</td>
+            <td>23.23</td>
+        </tr>
+        <tr>
+            <td>Slovenia</td>
+            <td>SVN</td>
+            <td>1997</td>
+            <td>1985.96</td>
+            <td>159.6882935</td>
+            <td>103.96</td>
+            <td>14143.02</td>
+            <td>53.24</td>
+            <td>24.14</td>
+        </tr>
+        <tr>
+            <td>Slovenia</td>
+            <td>SVN</td>
+            <td>1998</td>
+            <td>1982.60</td>
+            <td>166.134201</td>
+            <td>108.93</td>
+            <td>15067.34</td>
+            <td>52.82</td>
+            <td>25.35</td>
+        </tr>
+        <tr>
+            <td>Zambia</td>
+            <td>ZMB</td>
+            <td>1994</td>
+            <td>8740.72</td>
+            <td>669.3706055</td>
+            <td>307.48</td>
+            <td>834.19</td>
+            <td>75.43</td>
+            <td>9.86</td>
+        </tr>
+        <tr>
+            <td>Zambia</td>
+            <td>ZMB</td>
+            <td>1995</td>
+            <td>8980.00</td>
+            <td>864.1192017</td>
+            <td>402.40</td>
+            <td>829.37</td>
+            <td>76.55</td>
+            <td>10.31</td>
+        </tr>
+        <tr>
+            <td>Zambia</td>
+            <td>ZMB</td>
+            <td>1996</td>
+            <td>9214.40</td>
+            <td>1207.900024</td>
+            <td>515.01</td>
+            <td>838.05</td>
+            <td>78.74</td>
+            <td>10.99</td>
+        </tr>
+        <tr>
+            <td>Zambia</td>
+            <td>ZMB</td>
+            <td>1997</td>
+            <td>9443.21</td>
+            <td>1314.498047</td>
+            <td>596.97</td>
+            <td>851.47</td>
+            <td>77.59</td>
+            <td>12.15</td>
+        </tr>
+        <tr>
+            <td>Zambia</td>
+            <td>ZMB</td>
+            <td>1998</td>
+            <td>9665.71</td>
+            <td>1862.06897</td>
+            <td>744.91</td>
+            <td>800.69</td>
+            <td>85.12</td>
+            <td>13.75</td>
+        </tr>
+        <tr>
+            <td>Zambia</td>
+            <td>ZMB</td>
+            <td>1999</td>
+            <td>9881.21</td>
+            <td>2388.019043</td>
+            <td>941.87</td>
+            <td>765.24</td>
+            <td>91.82</td>
+            <td>15.30</td>
+        </tr>
+        <tr>
+            <td>Zambia</td>
+            <td>ZMB</td>
+            <td>2000</td>
+            <td>10089.00</td>
+            <td>3110.843994</td>
+            <td>1157.63</td>
+            <td>840.97</td>
+            <td>86.33</td>
+            <td>15.38</td>
+        </tr> */}
+    </tbody>
+</table>
+
+
+    <script >
+
+          var filtersConfig = {
+            base_path: 'http://koalyptus.github.io/TableFilter/tablefilter/',
+            //col_1: 'select',
+            //col_2: 'checklist',
+            //col_8: 'none',
+            popup_filters: true,
+            auto_filter: true,
+            auto_filter_delay: 1100, //milliseconds
+            //alternate_rows: true,
+            rows_counter: true,
+            rows_counter_text: "Rows: ",
+            btn_reset: true,
+            status_bar: true,
+            msg_filter: 'Filtering...',
+
+            extensions: [{ name: 'sort' }],
+
+            col_width:[
+                '125px', '90px', '100px',
+                '90px', '90px', '90px',
+                '90px', '90px', '90px'
+            ]
+          };
+          var tf = new TableFilter('demo', filtersConfig);
+          tf.init();
+</script>

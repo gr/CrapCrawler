@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js" ></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+    <script src="https://fb.me/react-with-addons-0.14.7.js"></script>
+    <script src="https://fb.me/react-dom-0.14.7.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="http://koalyptus.github.io/TableFilter/tablefilter/tablefilter.js"></script>
+  </head>
+  <body>
+    <div id="main"></div>
+    <script type="text/babel">
+      import { createStore } from 'redux'
+
+      const initialState = {  
+            data: {},
+            display_data: {},
+            active_tab: "",
+            isFetching: false
+      };
+
+
+      function CrapCrawlerRedux(state = initialState, action) {
+        switch (action.type) {
+        case 'ServerPoll':
+          return state + 1
+        case 'Sort':
+          return state - 1
+        case 'Filter':
+          return state - 1
+        case 'Add':
+          return state - 1
+        case 'Edit':
+          return state - 1
+        case 'Delete':
+          return state - 1
+        default:
+          return state
+        }
+      }
+       
+
+
+      ReactDOM.render(
+        <h1>asd</h1>,
+        document.getElementById('main')
+      );
+
+    </script>
+  </body>
+</html>
+

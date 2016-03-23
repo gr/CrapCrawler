@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello React!</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js" ></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+    <script src="https://fb.me/react-with-addons-0.14.7.js"></script>
+    <script src="https://fb.me/react-dom-0.14.7.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="http://koalyptus.github.io/TableFilter/tablefilter/tablefilter.js"></script>
+  </head>
+  <body>
+    <div id="main"></div>
+    <script type="text/babel">
+      var tables = {};
+
+      var ListSearch = React.createClass({
+        loadCommentsFromServer: function() {
+          $.ajax({
+            url: this.props.url,
+            dataType: 'json',
+            success: function(data) {
+              this.setState({data: data});
+            }.bind(this),
+            error: function(xhr, status, err) {
+              console.error(this.props.url, status, err.toString());
+            }.bind(this)
+          });
+        },
+
+        getInitialState: function() {
+          return {data: []};
+        },
+
+        componentDidMount: function() {
+          this.loadCommentsFromServer();
+          setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+        },
+
+        render: function() {
+          return ( <List data={this.state.data} />);
+        }
+      
+      });
+
+
+
+      //var List = React.createClass({
+      //
+      //
+      //});
+
+      
+      var Tabs = React.createClass({
+
+        render: function() {
+          var update_period = 10*60*1000; //in miliseconds
+          return (
+            <div className="panel with-nav-tabs panel-success">
+              <div className="panel-heading">
+                <ul className="nav nav-tabs">
+                  <li className="active"><a href="#dashboard" data-toggle="tab">Dashboard</a></li>
+                  <li>                   <a href="#engines"   data-toggle="tab">Engines</a></li>
+                  <li>                   <a href="#fields"    data-toggle="tab">Fields</a></li>
+                  <li>                   <a href="#searches"  data-toggle="tab">Searches</a></li>
+                  <li>                   <a href="#ads"       data-toggle="tab">Ads</a></li>
+                  <li>                   <a href="#words"     data-toggle="tab">Words</a></li>
+                  <li>                   <a href="#managers"  data-toggle="tab">Managers</a></li>
+                </ul>
+              </div>
+              <div className="panel-body">
+                <div className="tab-content">
+                  <div className="tab-pane fade in active" id="dashboard"> </div>
+                  <div className="tab-pane fade"           id="engines">   <ListSearch url="/list?engines"  pollInterval={update_period} /></div>
+                  <div className="tab-pane fade"           id="fields">    <ListSearch url="/list?fields"   pollInterval={update_period} /></div>
+                  <div className="tab-pane fade"           id="searches">  <ListSearch url="/list?searchs"  pollInterval={update_period} /></div>
+                  <div className="tab-pane fade"           id="ads">       <ListSearch url="/list?ads"      pollInterval={update_period} /></div>
+                  <div className="tab-pane fade"           id="words">     <ListSearch url="/list?words"    pollInterval={update_period} /></div>
+                  <div className="tab-pane fade"           id="managers">  <ListSearch url="/list?managers" pollInterval={update_period} /></div>
+                </div>
+              </div>
+            </div>
+          )
+        }
+      });      
+
+      
+      ReactDOM.render(
+        <Tabs />,
+        document.getElementById('main')
+      );
+    </script>
+  </body>
+</html>
+
