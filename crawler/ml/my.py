@@ -14,6 +14,21 @@
         #    orm_ad = fill_orm_ad(ad, session)
         #    orm_ad.rating = 0
 
+
+
+class Word(Base):
+  __tablename__ = 'words'
+
+  id         = Column(Integer, primary_key=True)
+  word       = Column(String(50))
+  popularity = Column(Float)
+
+  def __repr__(self):
+    return "<Word (id=%i, word=%s)>" % (self.id, self.word)
+
+
+
+
 def fill_orm_ad( ad, session ):
   orm_ad = session.query(Ad).filter( Ad.url == ad.url ).first()
   if not orm_ad:

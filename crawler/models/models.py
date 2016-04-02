@@ -1,6 +1,4 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
-
 import logging;logging.basicConfig(level = logging.DEBUG)
 import os
 
@@ -25,11 +23,6 @@ manager_contact = Table('manager_contact', Base.metadata,
 search_managers = Table('search_managers', Base.metadata,
     Column('search_id', Integer, ForeignKey('searches.id')),
     Column('manager_id', Integer, ForeignKey('managers.id'))
-)
-
-ad_words = Table('ad_words', Base.metadata,
-    Column('ad_id', Integer, ForeignKey('ads.id')),
-    Column('word_id', Integer, ForeignKey('words.id'))
 )
 
 
@@ -70,17 +63,6 @@ class Engine(Base):
 
   def __repr__(self):
     return "<Engine (id=%i, name=%s)>" % (self.id, self.name)
-
-
-class Word(Base):
-  __tablename__ = 'words'
-
-  id         = Column(Integer, primary_key=True)
-  word       = Column(String(50))
-  popularity = Column(Float)
-
-  def __repr__(self):
-    return "<Word (id=%i, word=%s)>" % (self.id, self.word)
 
 
 class Ad(Base):
