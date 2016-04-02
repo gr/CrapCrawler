@@ -9,12 +9,12 @@ python install.py -r etc/requirements.txt
 
 ## Init database with fixture
 ```
-venv/bin/python manage.py
+./manage.py
 ```
 
 ## Run service
 ```
-venv/bin/python init.py start
+./init.py start
 ```
 
 
