@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
  
 import BaseHTTPServer
-import cgi
 import logging
 import json
 import os
 import sys
-from ..models import Field, Engine, Word, Ad, Search, Manager, Contact, Base, get_session
+from ..models import Field, Engine, Ad, Search, Manager, Contact, Base, get_session
 from sqlalchemy.orm import class_mapper
+import threading
 
 
 
-avaliable_types = ('engine', 'field', 'search', 'ad',  'word', 'manager')
+avaliable_types = ('engine', 'field', 'search', 'ad',  'manager')
 
 def serialize(model):
   """Transforms a model into a dictionary which can be dumped to JSON."""
@@ -96,11 +96,18 @@ class CrawlerWeb(BaseHTTPServer.BaseHTTPRequestHandler):
       self.do_404()
 
 
+class HTTPD( threading.Thread ):
+  """ Threaded http server """
 
-def httpd( config, controllers ):
-  CrawlerWeb.controllers = controllers
-  CrawlerWeb.config = config
-
-  logging.info('Webserver starting %s:%s' % ( config.host, config.port ))
-  return BaseHTTPServer.HTTPServer( (config.host, config.port), CrawlerWeb )
+  def __init__( self, config, controllers ):
+    threading.Thread.__init__(self)
+    
+    self.config = config
+    self.controllers = controllers
+    self.httpd = BaseHTTPServer.HTTPServer( (self.config.host, self.config.port), CrawlerWeb ) 
+  
+  def run( self ):
+    logging.info('Webserver starting %s:%s' % ( self.config.host, self.config.port ))
+    self.httpd.serve_forever()
+   
 

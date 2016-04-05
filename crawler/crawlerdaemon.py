@@ -9,7 +9,7 @@ from models import Search
 from models import get_session
 from crawler.engine import Engine
 from crawler.controller import Controller 
-from web import httpd
+from web import HTTPD
 
 
 class CrawlerDaemon(Daemon):
@@ -39,13 +39,13 @@ class CrawlerDaemon(Daemon):
           schedule.every( orm_search.periodicity ).seconds.do( job )
           logging.debug('Put %s to schedule with periodicity %i seconds' % ( orm_search.name, orm_search.periodicity ) )
 
-    self.httpd = httpd( self.config, self.controllers )
+    self.httpd = HTTPD( self.config, self.controllers )
+    self.httpd.start()
      
     while True:
       if not self.config.dry_run:
         schedule.run_pending()
 
-      self.httpd._handle_request_noblock()
       time.sleep(1)
 
    
