@@ -72,7 +72,6 @@ class Ad(Base):
   url   = Column(String(350))
   title = Column(String(350))
   price = Column(Integer)
-  words = relationship('Word', secondary=ad_words, backref='ads')
 
   def __repr__(self):
     return "<Ad (id=%i, name=%s)>" % (self.id, self.name)

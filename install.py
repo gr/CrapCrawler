@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 '''
 This is universal install script, which requeres only Python 2.7
 The main point of this script is to create virtual environment with all nessesary python packages for sucessfully autotest work
@@ -18,7 +19,7 @@ TODO
 If this script doesn`t work, you may manually install python packages from etc/requerements.txt file,
 and run python with this packages
 
-@author George Regentov george_regentov@ocslab.com
+@author George Regentov george.regentov@gmail.com
 '''
 
 import urllib
@@ -37,7 +38,7 @@ class PackageManager(object):
   Otherwise PacketManager will install this package via pip in temporary directory
   If system doesn`t provide pip, it will be install to temporary directory too
 
-  The main point of this class is to provide any system module or install itin temporary directory
+  The main point of this class is to provide any system module or install it in temporary directory
   """  
   pip_url = 'http://bootstrap.pypa.io/get-pip.py'
   
@@ -122,11 +123,9 @@ if __name__ == "__main__":
   # Install Windows specific packages in virtual environment
   if sys.platform == 'win32':
     if sys.maxsize > 2**32: # for 64-bit system
-      binary_packages = ( 'https://pypi.python.org/packages/2.7/l/lxml/lxml-3.3.4.win-amd64-py2.7.exe',
-                          'http://www.voidspace.org.uk/downloads/pycrypto26/pycrypto-2.6.win-amd64-py2.7.exe')
+      binary_packages = ( 'https://pypi.python.org/packages/2.7/l/lxml/lxml-3.3.4.win-amd64-py2.7.exe', )
     else: # for 32-bit system
-      binary_packages = ( 'https://pypi.python.org/packages/2.7/l/lxml/lxml-3.3.4.win32-py2.7.exe',
-                          'http://www.voidspace.org.uk/downloads/pycrypto26/pycrypto-2.6.win32-py2.7.exe' )
+      binary_packages = ( 'https://pypi.python.org/packages/2.7/l/lxml/lxml-3.3.4.win32-py2.7.exe',  )
     easy_install = venv + "\Scripts\easy_install.exe"
     for binary_package in binary_packages:
       subprocess.call([ easy_install, binary_package ])
@@ -143,8 +142,11 @@ if __name__ == "__main__":
     print "File \"%s\" is not exists\nThis file need to fill virtualenv" % args.requirements
     sys.exit(1)
 
-  # Make simlink ./venv/bin/py.test -> py.test for easy usage
-  #os.symlink( os.path.join( os.path.dirname(pip), 'py.test'), 'py.test') 
+  # Make symlinks for git hooks
+  misc_hooks = os.path.join( cwd, 'misc', 'git-hooks' )
+  git_hooks  = os.path.join( cwd, '.git', 'hooks' )
+  os.symlink( os.path.join( misc_hooks, 'pre-commit'), os.path.join( git_hooks, 'pre-commit' ) ) 
+  os.symlink( os.path.join( misc_hooks, 'pre-push'), os.path.join( git_hooks, 'pre-push' ) ) 
 
   # Generate documentation via pydoc in docs directory
 

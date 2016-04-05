@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from models import Field, Engine, Word, Ad, Search, Manager, Contact, Base
+from models import Field, Engine, Ad, Search, Manager, Contact, Base
 
 import logging
 from sqlalchemy.orm import sessionmaker

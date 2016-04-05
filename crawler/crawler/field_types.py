@@ -10,7 +10,7 @@ class FieldTypes():
 
 
   def str(self, field, ad):
-    return str(ad.xpath( field.xpath )[0].text.strip())
+    return ad.xpath( field.xpath )[0].text.strip()
 
 
   def int(self, field, ad):

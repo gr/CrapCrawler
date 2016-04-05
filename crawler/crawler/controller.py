@@ -32,9 +32,9 @@ class Controller( threading.Thread ):
         orm_ad = session.query(Ad).filter( Ad.url == preview.url ).first()
 
         if not orm_ad:
-          orm_ad = Ad(url=ad.url)
+          orm_ad = Ad(url=preview.url)
 
-        for k,v in ad.items():
+        for k,v in preview.items():
           setattr(orm_ad, k ,v)
 
         session.add(orm_ad)
