@@ -1,27 +1,21 @@
+
 # CrapCrawler
-Crap Crawler
 Is an application for periodically crawl some bazaars
-
-## Install
-```
-python install.py -r etc/requirements.txt
-```
-
-## Init database with fixture
-```
-./manage.py
-```
-
-## Run service
-```
-./init.py start
-```
+**[About](./docs/about.md)**
+**[Overview](./docs/overview.md)**
+**[Executable files](./docs/executable.md)**
 
 
-## TODO
-* Add traffic counter
-* Add queue load indicator
-* Add avg search compleete time indicator
-* Add engine quality indicator
+## Quick start
 
-
+ 1. Download CrapCrawler from Github via git
+``` git clone .git ```
+or like zip archive
+```curl zip ```
+ 2. Install CrapCrawler
+```python install.py -r etc/requirements.txt```
+ 3. Initial database
+```./manage.py```
+ 4. Run service
+```./init.py start```
+ 5. Open http://localhost:8080
